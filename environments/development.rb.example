@@ -1,0 +1,3 @@
+set :db_connection_string, 'postgres://YOUR_DATABASE'
+
+set :twitter, {:consumer_key => 'YOUR KEY', :consumer_secret => 'YOUR SECRET'}
