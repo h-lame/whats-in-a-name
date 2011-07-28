@@ -1,7 +1,7 @@
 get '/' do
   if logged_in?
-    "<h1>Hi, #{current_person.nickname}</h1>"
+    erb :'root/hi_there'
   else
-    '<a href="/sign_up">create an account</a> or <a href="/sign_in">sign in with Twitter</a>'
+    erb :'root/join_in'
   end
 end
