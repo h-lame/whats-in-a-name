@@ -48,6 +48,7 @@ GEM
       dm-core (~> 1.1.0)
     do_postgres (0.10.6)
       data_objects (= 0.10.6)
+    erubis (2.7.0)
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
@@ -121,5 +122,6 @@ PLATFORMS
 DEPENDENCIES
   datamapper (= 1.1.0)
   dm-postgres-adapter (= 1.1.0)
+  erubis (= 2.7.0)
   omniauth (= 0.2.6)
   sinatra (= 1.2.6)
