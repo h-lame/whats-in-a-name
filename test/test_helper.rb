@@ -6,7 +6,6 @@ gem 'minitest'
 require 'test/unit'
 require 'minitest/pride'
 require 'database_cleaner'
-DatabaseCleaner.strategy = :transaction
 
 set :environment, :test
 
@@ -23,17 +22,33 @@ class Hash
   end
 end
 
-class WhatsInANameTest < Test::Unit::TestCase
-  include Capybara::DSL
-  def app
-    @app = Capybara.app = Sinatra::Application.new
+# Until https://github.com/bmabey/database_cleaner/commit/44cd4b611eea526bc47750cd5a7fefa0877ae0e4 is released
+class String
+  def compress_lines
+    self
   end
+end
 
+DatabaseCleaner.clean_with :truncation
+DatabaseCleaner.strategy = :transaction
+
+class WhatsInANameTest < Test::Unit::TestCase
   add_setup_hook do
     DatabaseCleaner.start
   end
 
   add_teardown_hook do
     DatabaseCleaner.clean
+  end
+end
+
+class WhatsInANameAppTest < WhatsInANameTest
+  include Capybara::DSL
+  def app
+    @app = Capybara.app = Sinatra::Application.new
+  end
+
+  add_setup_hook do |test_case|
+    test_case.app
   end
 end

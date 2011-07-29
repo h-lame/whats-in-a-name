@@ -1,0 +1,8 @@
+<p>Hi, <%= current_person.nickname %></p>
+<p>Tell us the story of your twitter name.</p>
+<form action="<%= tell_your_story_path %>" method="POST">
+  <p><label for="story_name">My real name is</label> <input id="story_name" type="text" name="story[name]" value="<%= current_person.name %>"></p>
+  <p><label for="story_nickname">But on Twitter I'm called</label> <input id="story_nickname" type="text" name="story[nickname]" value="<%= current_person.nickname %>">,
+    <label for="story_text">I'm called this because</label> <textarea id="story_text" name="story[text]"></textarea>.</p>
+  <p><button type="submit">The end.</button></p>
+</form>

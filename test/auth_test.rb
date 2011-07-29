@@ -1,9 +1,8 @@
 require 'test_helper'
 
-class AuthTest < WhatsInANameTest
+class AuthTest < WhatsInANameAppTest
   def setup
     OmniAuth.config.add_mock(:twitter, {:uid => '12345', :user_info => {:nickname => 'robo_dave', :name => 'Dave McTest'}})
-    app
   end
 
   def test_i_visit_the_site_and_after_authenticating_with_twitter_it_stores_my_details_in_the_db
