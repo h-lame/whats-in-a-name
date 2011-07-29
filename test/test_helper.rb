@@ -2,6 +2,7 @@ ENV['RACK_ENV'] = 'test'
 require './whats-in-a-name'  # <-- your sinatra app
 require 'capybara'
 require 'capybara/dsl'
+require 'rack/test'
 gem 'minitest'
 require 'test/unit'
 require 'minitest/pride'
@@ -50,5 +51,16 @@ class WhatsInANameAppTest < WhatsInANameTest
 
   add_setup_hook do |test_case|
     test_case.app
+  end
+end
+
+class WhatsInANameControllerTest < WhatsInANameTest
+  def last_redirect_path
+    s, ui, h, p, r, path, o, query, fragment = *URI.split(@browser.last_response.location)
+    [path, query ? "?#{query}" : nil, fragment ? "##{fragment}" : nil].join
+  end
+
+  add_setup_hook do |test_case|
+    test_case.instance_variable_set(:'@browser', Rack::Test::Session.new(Rack::MockSession.new(Sinatra::Application)))
   end
 end

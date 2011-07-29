@@ -1,3 +1,7 @@
+before '/tell-your-story' do
+  redirect to('/') unless logged_in?
+end
+
 get '/tell-your-story' do
   erb :'stories/tell_your_story'
 end
