@@ -1,2 +1,3 @@
 *.tmproj
 environments/development.rb
+.rvmrc
